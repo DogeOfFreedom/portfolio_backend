@@ -17,7 +17,17 @@ const deleteSkill = expressAsyncHandler(async (req, res) => {
 });
 
 const updateSkill = expressAsyncHandler(async (req, res) => {
-  res.send("UPDATE SKILL stub");
+  const id = Number(req.params.id);
+  const { name } = req.body;
+  await prisma.skill.update({
+    where: {
+      id,
+    },
+    data: {
+      name,
+    },
+  });
+  res.sendStatus(200);
 });
 
 const doesSkillExist = expressAsyncHandler(async (skill) => {
