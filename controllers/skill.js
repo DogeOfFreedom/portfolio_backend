@@ -9,11 +9,20 @@ const getAllSkills = expressAsyncHandler(async (req, res) => {
 });
 
 const createNewSkill = expressAsyncHandler(async (req, res) => {
-  res.send("NEW SKILL stub");
+  await prisma.skill.create({
+    data: req.body,
+  });
+  res.sendStatus(200);
 });
 
 const deleteSkill = expressAsyncHandler(async (req, res) => {
-  res.send("DELETE SKILL stub");
+  const id = Number(req.params.id);
+  await prisma.skill.delete({
+    where: {
+      id,
+    },
+  });
+  res.sendStatus(200);
 });
 
 const updateSkill = expressAsyncHandler(async (req, res) => {
