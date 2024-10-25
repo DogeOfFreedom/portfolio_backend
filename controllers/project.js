@@ -17,7 +17,7 @@ const createNewProject = expressAsyncHandler(async (req, res) => {
       link,
     },
   });
-  res.sendStatus(200);
+  res.status(200).json({ message: "OK" });
 });
 
 const deleteProject = expressAsyncHandler(async (req, res) => {
@@ -27,7 +27,7 @@ const deleteProject = expressAsyncHandler(async (req, res) => {
       id,
     },
   });
-  res.sendStatus(200);
+  res.status(200).json({ message: "OK" });
 });
 
 const updateProject = expressAsyncHandler(async (req, res) => {
@@ -43,7 +43,7 @@ const updateProject = expressAsyncHandler(async (req, res) => {
       link,
     },
   });
-  res.sendStatus(200);
+  res.status(200).json({ message: "OK" });
 });
 
 const doesProjectExist = expressAsyncHandler(async (project) => {

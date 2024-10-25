@@ -1,10 +1,12 @@
 const router = require("express").Router();
+const { checkForErrors } = require("../controllers/errors");
 const {
   getAllSkills,
   createNewSkill,
   deleteSkill,
   updateSkill,
 } = require("../controllers/skill");
+const { validateSkill } = require("../controllers/validation");
 
 /*
 Functions Needed:
@@ -18,12 +20,12 @@ Functions Needed:
 router.get("/skills", getAllSkills);
 
 // Create new skill
-router.post("/skills", createNewSkill);
+router.post("/skills", validateSkill, checkForErrors, createNewSkill);
 
 // Delete skill
 router.delete("/skills/:id", deleteSkill);
 
 // Update skill
-router.put("/skills/:id", updateSkill);
+router.put("/skills/:id", validateSkill, checkForErrors, updateSkill);
 
 module.exports = router;

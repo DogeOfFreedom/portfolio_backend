@@ -5,14 +5,17 @@ const prisma = new PrismaClient();
 
 const getAllSkills = expressAsyncHandler(async (req, res) => {
   const skills = await prisma.skill.findMany();
-  res.send(skills);
+  res.status(200).json(skills);
 });
 
 const createNewSkill = expressAsyncHandler(async (req, res) => {
+  const { name } = req.body;
   await prisma.skill.create({
-    data: req.body,
+    data: {
+      name,
+    },
   });
-  res.sendStatus(200);
+  res.status(200).json({ message: "OK" });
 });
 
 const deleteSkill = expressAsyncHandler(async (req, res) => {
@@ -22,7 +25,7 @@ const deleteSkill = expressAsyncHandler(async (req, res) => {
       id,
     },
   });
-  res.sendStatus(200);
+  res.status(200).json({ message: "OK" });
 });
 
 const updateSkill = expressAsyncHandler(async (req, res) => {
@@ -36,7 +39,7 @@ const updateSkill = expressAsyncHandler(async (req, res) => {
       name,
     },
   });
-  res.sendStatus(200);
+  res.status(200).json({ message: "OK" });
 });
 
 const doesSkillExist = expressAsyncHandler(async (skill) => {
